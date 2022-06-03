@@ -19,10 +19,7 @@ int main()
             mp[arr[i]]++;
         }
     }
-    for (auto i : mp)
-    {
-        cout << i.first << " ";
-    }
+  
 
     return 0;
 }
