@@ -4,8 +4,6 @@
 
 // It is guaranteed that the number of unique combinations that sum up to target is less than 150 combinations for the given input.
 
- 
-
 // Example 1:
 
 // Input: candidates = [2,3,6,7], target = 7
@@ -17,10 +15,46 @@
 
 #include <bits/stdc++.h>
 using namespace std;
- 
-int main(){
- 
- //code 
- 
-return 0;
+
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    sort(arr, arr + n);
+    int min_val = INT_MAX;
+    for (int i = 0; i < n; i++)
+    {
+        min_val = min(min_val, abs(arr[i] - arr[i - 1]));
+    }
+    vector<vector<int>> ans;
+    vector<int> pair;
+    map<int, int> mp;
+    for (int i = 0; i < n; i++)
+    {
+        mp[arr[i]] = i;
+    }
+    int count = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (mp.find(arr[i] - min_val) != mp.end())
+        {
+            // cout << arr[i] << " " << arr[mp.find(arr[i] - min_val)->second] << endl;
+            pair.push_back(arr[mp.find(arr[i] - min_val)->second]);
+            pair.push_back(arr[i]);
+            ans.push_back(pair);
+        }
+    }
+
+    // for(auto i : pair){
+    //     cout<<i<<" ";
+    // }
+    
+    
+
+    return 0;
 }
